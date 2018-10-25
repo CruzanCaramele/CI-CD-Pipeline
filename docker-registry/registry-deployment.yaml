@@ -24,4 +24,21 @@ spec:
           mountPath: /var/run/docker.sock
         - name: registry-persistent-storage
           mountPath: /var/lib/registry
+      - name: registryui
+        image: hyper/docker-registry-web:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: REGISTRY_NAME
+          value: cluster-registry
+        - name: REGISTRY_URL
+          value: http://localhost:5000/v2
+      volumes:
+        - name: docker
+          hostPath:
+            path: /var/run/docker.sock
+        - name: registry-persistent-storage
+          persistentVolumeClaim:
+            claimName: registry-claim
+          
       
