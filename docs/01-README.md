@@ -48,6 +48,39 @@ You can access the registry through the IP address of your minikube node and app
     minikube service registy-ui
 ```
 
+#### Building the Docker Images
+
+- In this step, we will build the docker image for the simple node application:
+
+```
+   kube-ci-cd $ docker build -t 127.0.0.1:30400/mysimple-app:latest -f applications/Dockerfile .
+```
+
+- AT this point, attempting to push the above image to the local image registry will fail because docker client can only push to  HTTP on localhost. Next, is to apply Docker container that listens on 127.0.0.1:30400 and forwards to our cluster:
+
+```
+   docker build -t socat-registry -f proxy-container/Dockerfile proxy-container/
+```
+
+- Check images built:
+```
+   kube-ci-cd $ docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+socat-registry                 latest              d4d7911c8e5b        8 minutes ago       9.99MB
+127.0.0.1:30400/mysimple-app   latest              e450bafda250        18 minutes ago      537MB
+alpine                         latest              196d12cf6ab1        6 weeks ago         4.41MB
+risingstack/alpine
+```
 
 
+#### Push Images to Local Registry
+
+- To push the simple node app image to the local registry, we need to start the proxy container first:
+```
+kube-ci-cd $ docker run -d -e "REG_IP=`minikube ip`" -e "REG_PORT=30400" --name socat-registry -p 30400:5000 socat-registry
+f5ac890c6ca470dcab4c8b98013649b612e403fa599c9837a55069fc2e494091
+```
+
+- Next is to push the node app image:
+```
 
