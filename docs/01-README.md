@@ -42,7 +42,12 @@ The above will take sometime to finish creating the local image registry (severa
 ```
 
 
-- 
+You can access the registry through the IP address of your minikube node and appending the registry-ui nodePort as below:
+
+```
+    minikube service registy-ui
+```
+
 
 
 
