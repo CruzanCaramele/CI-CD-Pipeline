@@ -1,0 +1,40 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "Hello world app taken from: https://expressjs.com/en/starter/hello-world.html",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Warning: no test specified\" && exit 0",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borderguru/hello-world.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/borderguru/hello-world/issues"
+  },
+  "homepage": "https://github.com/borderguru/hello-world#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "semantic-release": "^14.0.0"
+  },
+  "release": {
+    "branch": "master",
+    "tagFormat": "${version}",
+    "verifyConditions": [
+      "@semantic-release/github"
+    ],
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      "@semantic-release/github"
+    ]
+  }
+}
