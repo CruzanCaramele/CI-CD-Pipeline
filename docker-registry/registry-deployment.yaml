@@ -27,7 +27,7 @@ spec:
       - name: registryui
         image: hyper/docker-registry-web:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
         env:
         - name: REGISTRY_NAME
           value: cluster-registry
