@@ -83,4 +83,21 @@ f5ac890c6ca470dcab4c8b98013649b612e403fa599c9837a55069fc2e494091
 
 - Next is to push the node app image:
 ```
+kube-ci-cd $ docker push 127.0.0.1:30400/mysimple-app:latest
+The push refers to repository [127.0.0.1:30400/mysimple-app]
+dca9b56becd7: Pushed 
+d17cbda0e159: Pushed 
+72ea0d04e592: Pushed 
+a7beb62fb9aa: Pushed 
+5f70bf18a086: Pushed 
+07ec33971c0e: Pushed 
+57905c4f5a20: Pushed 
+e6833acdfade: Pushed 
+6102f0d2ad33: Pushed 
+latest: digest: sha256:4c1c5920898e88d60eee3a51fdb1fd8189c823ab911e719a62addf4743d0c6b4 size: 2613
+```
 
+Refresh your browser window of the local image registry and you will see the image
+
+
+[Next-Part](02-README.md)
